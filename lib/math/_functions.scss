@@ -1,0 +1,26 @@
+@charset 'utf-8';
+@use 'sass:math';
+
+
+
+
+
+@function scale($v, $w, $n, $x) {
+  // Weight is positive | increment
+  @if ($w > 0) {
+    $i: ($x - $v);
+    $s: math.div(($w * $i), 100);
+    $v: ($v + $s);
+  }
+
+  // Weight is negative | decrement
+  @if ($w < 0) {
+    $i: ($v - $n);
+    $w: math.abs($w);
+    $s: math.div(($w * $i), 100);
+    $v: ($v - $s);
+  }
+
+  // Return final value
+  @return $v;
+}
